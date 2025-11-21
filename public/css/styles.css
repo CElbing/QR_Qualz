@@ -1,0 +1,293 @@
+/* --------------------------------------------------------------------------
+   Modular CSS Variables
+   -------------------------------------------------------------------------- */
+
+:root {
+    --primary-color: white;
+    --secondary-color: #61a4ad;
+    --secondary-color-dark:hsl(188, 29%, 35%);
+    --background-color: #141414;
+    --secondary-font: "Segoe UI", sans-serif;
+    --paragraph-font-size: 18px;
+    --header-font-size: 36px;
+    --primary-font: "aktiv-grotesk", sans-serif;
+    --secondary-font: "museo-slab", serif;
+}
+
+/*--------------------------------------------------------------*/
+
+/* ------------------------------------
+   Font Familys
+   ------------------------------------ */
+
+/*-- Primary Fonts --*/
+
+/* Primary Font Regular 400 */
+.primary-font-400 {
+    font-family: var(--primary-font);
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Primary Bold 700 */
+.primary-font-700 {
+    font-family: var(--primary-font);
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* Primary Semi-Bold 550 */
+.primary-font-550 {
+    font-family: var(--primary-font);
+    font-optical-sizing: auto;
+    font-weight: 550;
+    font-style: normal;
+}
+
+/* Primary Italic 400 */
+.primary-font-400i {
+    font-family: var(--primary-font);
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: italic;
+}
+
+/*-- Secondary Fonts --*/
+
+/* Secondary Font Regular 400 */
+.secondary-font-400 {
+    font-family: var(--secondary-font);
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Secondary Bold 700 */
+.secondary-font-700 {
+    font-family: var(--secondary-font);
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* Secondary Semi-Bold 550 */
+.secondary-font-550 {
+    font-family: var(--secondary-font);
+    font-optical-sizing: auto;
+    font-weight: 550;
+    font-style: normal;
+}
+
+/* Secondary Italic 400 */
+.secondary-font-400i {
+    font-family: var(--secondary-font);
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: italic;
+}
+
+/*--------------------------------------------------------------*/
+
+/* ------------------------------------
+   Font Attributes
+   ------------------------------------ */
+
+.font-12 {
+    font-size: 12px;
+}
+
+.font-16 {
+    font-size: 16px;
+}
+
+.font-20 {
+    font-size: 20px;
+}
+
+.font-24 {
+    font-size: 24px;
+}
+
+.font-30 {
+    font-size: 30px;
+}
+
+
+/*--------------------------------------------------------------*/
+
+
+/* ------------------------------------
+   Flex Box Attributes
+   ------------------------------------ */
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.center-items {
+    align-items: center;
+}
+
+.center-content {
+    justify-content: center;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.center-all {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.split-space {
+    justify-content: space-between;
+}
+
+.paragraph-center {
+    width: 80%;
+    max-width: 600px;
+    margin: auto;
+}
+
+.paragraph-center-small{
+    max-width: 300px;
+    margin: auto;
+}
+/*--------------------------------------------------------------*/
+
+/* ------------------------------------
+   General Styles
+   ------------------------------------ */
+
+html{
+     scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--secondary-font);
+    background-color: var(--background-color);
+    color: white;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    font-family: var(--secondary-font);
+    font-size: var(--paragraph-font-size);
+}
+
+h1,h2,h3,h4,h5,h6 {
+    margin: 0;
+    padding: 0;
+    color: var(--primary-color);
+}
+
+a{
+    text-decoration: none;
+}
+
+hr{
+    width: 80vw;
+}
+
+
+/*--------------------------------------------------------------*/
+
+/* ------------------------------------
+   Specific Element Styles
+   ------------------------------------ */
+
+.hero-img {
+    width: 150px;
+    height: auto;
+}
+
+.qual{
+    border: 2px solid white;
+    border-radius: 20px;
+}
+
+/*--------------------------------------------------------------*/
+
+/* ------------------------------------
+   Margin and Padding Utilities
+   ------------------------------------ */
+.p10 {
+    padding: 10px;
+}
+
+   .p20 {
+    padding: 20px;
+}
+
+.m10-top {
+    margin-top: 10px;
+}
+
+.m20-top {
+    margin-top: 20px;
+}
+
+.m20-bottom {
+    margin-bottom: 20px;
+}
+
+/*--------------------------------------------------------------*/
+
+/* ------------------------------------
+   Button Styles
+   ------------------------------------ */
+.button-primary {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    text-decoration: none;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.button-primary:hover {
+    background-color: var(--secondary-color-dark);
+    transition: background-color 0.2s ease;
+}
+
+.button-primary-text-only {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.button-primary-text-only:hover {
+    color: var(--primary-color-dark);
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+/*--------------------------------------------------------------*/
+
+/* ------------------------------------
+   Media Query (1068px and above)
+   ------------------------------------ */
+
+@media (min-width: 1068px) {
+    .flex-row-md {
+        display: flex;
+        flex-direction: row;
+    }
+
+}
