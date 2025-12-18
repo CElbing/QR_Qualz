@@ -4,6 +4,7 @@
 
 :root {
     --primary-color: white;
+    --primary-color-dark:rgb(202, 202, 202);
     --secondary-color: #61a4ad;
     --secondary-color-dark:hsl(188, 29%, 35%);
     --background-color: #141414;
@@ -96,6 +97,10 @@
 
 .font-12 {
     font-size: 12px;
+}
+
+.font-14{
+    font-size: 14px;
 }
 
 .font-16 {
@@ -203,6 +208,14 @@ hr{
     width: 80vw;
 }
 
+details.smooth summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+details.smooth summary::-webkit-details-marker {
+  display: none;
+}
 
 /*--------------------------------------------------------------*/
 
@@ -219,6 +232,7 @@ hr{
     border: 2px solid white;
     border-radius: 20px;
 }
+
 
 /*--------------------------------------------------------------*/
 
@@ -270,12 +284,13 @@ hr{
     color: var(--primary-color);
     text-decoration: none;
     transition: background-color 0.2s ease;
+    cursor: pointer;
 }
 
 .button-primary-text-only:hover {
     color: var(--primary-color-dark);
-    text-decoration: none;
     transition: background-color 0.2s ease;
+    cursor: pointer;
 }
 
 /*--------------------------------------------------------------*/

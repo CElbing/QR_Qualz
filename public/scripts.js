@@ -1,3 +1,5 @@
+let curHash = "";
+
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("quals_container");
   const editedRows = {};
@@ -17,44 +19,36 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       populateDiv(data);
 
+      // Gathering the necessary elements
+      const targetId = window.location.hash.substring(1); // current hash in url w/o '#'
+      const targetEl = document.getElementById(targetId); // gets the div container
+      const details = targetEl.querySelector("details"); // finds <details> in container
+      
+
+      //update the current hash, used to toggle 'open' on QR scan
+      curHash = targetId;
+
       if (window.location.hash) {
-        const targetId = window.location.hash.substring(1);
-        const targetEl = document.getElementById(targetId);
         if (targetEl) {
           // use setTimeout to ensure browser has rendered
           setTimeout(() => {
             targetEl.scrollIntoView({ behavior: "smooth" });
-          }, 50); // 50ms is usually enough
+            details.open = true; // Show content on QR scan
+          }, 1000);
         }
-      }
-      if (targetEl) {
-        setTimeout(() => {
-          const offset = -100; // pixels above the element
-          const elementPosition =
-            targetEl.getBoundingClientRect().top + window.pageYOffset;
-          const scrollPosition = elementPosition - offset;
-
-          window.scrollTo({
-            top: scrollPosition,
-            behavior: "smooth",
-          });
-
-          // Optional: highlight the element
-          targetEl.style.transition = "background-color 1s";
-          targetEl.style.backgroundColor = "#ffff99";
-          setTimeout(() => (targetEl.style.backgroundColor = ""), 2000);
-        }, 50);
       }
     })
     .catch((err) => console.error("Error fetching project data:", err));
 
+  // Function fills each container with the qualifications and QR code
   function populateDiv(data) {
     data.forEach((element, index) => {
       const newDiv = document.createElement("div");
+      // newDiv is the container
       newDiv.classList.add("qual", "p20", "m20-top");
       newDiv.id = element.id;
 
-      // Full Name field
+      // Gets the full name to display in newDiv
       const fullName = document.createElement("h2");
       fullName.textContent = `${element["First Name"]} ${element["Last Name"]}`;
       fullName.contentEditable = true;
@@ -62,29 +56,48 @@ document.addEventListener("DOMContentLoaded", () => {
       fullName.dataset.index = index;
       newDiv.appendChild(fullName);
 
+      // Removes unnecessary spaces from the name input by an editor
       fullName.addEventListener("input", () => {
         editedRows[index] = editedRows[index] || {};
         editedRows[index]["Full Name"] = fullName.textContent.trim();
       });
 
-      // Generate QR code link pointing to local network IP
-      //const localIP = "your computer's IP";
-      const basePath = "/QRQualz/public/"; // path to project
-      const link = `http://${localIP}${basePath}#${newDiv.id}`;
+      // Section with the qualifications
+      const detailSection = document.createElement("details");
+      detailSection.classList.add("smooth");
+      newDiv.appendChild(detailSection);
+
+      // Summary that when clicked expands the qualifications
+      const summarySection = document.createElement("summary");
+      summarySection.textContent = "Toggle Content";
+      detailSection.classList.add(
+        "primary-font-400",
+        "m20-top",
+        "button-primary",
+        "font-14"
+      );
+      detailSection.appendChild(summarySection);
+
+      // Generate QR code link pointing to Apache server
+      const IP = "192.168.1.50"; // IP of my RaspberryPi
+      //const basePath = "/QRQualz/public/index.html"; // path to index.html (not needed anymore)
+      //const link = `http://${IP}${basePath}#${newDiv.id}`; //create the link based on the IP, basePath, and the id of the div
+
+      const link = `http://${IP}#${newDiv.id}`; //create the link based on the IP, basePath, and the id of the div
 
       // QR code image
       const qrImg = document.createElement("img");
       qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(
         link
-      )}`;
+      )}`; // Generates the QR code to link to an employee
       qrImg.alt = `QR code for ${element["First Name"]} ${element["Last Name"]}`;
+      qrImg.classList.add("m20-top");
       qrImg.classList.add("qr-code"); // optional styling
-      newDiv.appendChild(qrImg);
+      detailSection.appendChild(qrImg);
 
-      newDiv.appendChild(qrImg);
-
-      // Other fields
+      // Loops through all the qualifications to be pulled onto the page
       Object.entries(element).forEach(([key, value]) => {
+        // Skip the these elements
         if (key === "First Name" || key === "Last Name" || key === "id") return;
 
         const p = document.createElement("p");
@@ -106,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         p.appendChild(label);
         p.appendChild(valueSpan);
-        newDiv.appendChild(p);
+        detailSection.appendChild(p);
       });
 
       container.appendChild(newDiv);
@@ -117,6 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("saveChanges").addEventListener("click", () => {
     const updatedData = [];
 
+    // Loops through all edited rows
     Object.entries(editedRows).forEach(([index, edits]) => {
       const originalRow = data[index];
       const merged = { ...originalRow, ...edits };
@@ -137,6 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    // Send the changed data to save-json.php to make changes to the JSON file
     fetch("save-json.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -146,4 +161,25 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((data) => console.log(data))
       .catch((err) => console.error(err));
   });
+});
+
+window.addEventListener("hashchange", () => {
+  if (curHash) {
+    const prevID = curHash
+    const prevEl = document.getElementById(prevID);
+    const details = prevEl.querySelector('details');
+
+    details.open = false;
+  }
+
+  const targetId = window.location.hash.substring(1);
+  const targetEl = document.getElementById(targetId);
+  const details = targetEl.querySelector("details");
+
+  if (targetEl) {
+    targetEl.scrollIntoView({ behavior: "smooth" });
+
+    details.open = true;
+  }
+  curHash = targetId;
 });

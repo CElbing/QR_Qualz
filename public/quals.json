@@ -4,9 +4,9 @@
             "Last Name": "Absher",
             "First Name": "Michael",
             "New Hire Orientation": "6\/19\/2025",
-            "16-Hour Fusion": "test",
+            "16-Hour Fusion": "",
             "Fire Training": "6\/19\/2025",
-            "Excavation Comp Person": "test",
+            "Excavation Comp Person": "",
             "Resp. Fit Tested": "",
             "Hazwoper": "",
             "OSHA 10\/30": "10",
@@ -4601,12 +4601,30 @@
             "ECP Line Tamer": "Trainee"
         },
         {
-            "Resp. Fit Tested": "test",
-            "id": 1
-        },
-        {
-            "Excavation Comp Person": "test",
-            "id": 2
+            "Last Name": "Absher",
+            "First Name": "Michael",
+            "New Hire Orientation": "6\/19\/2025",
+            "16-Hour Fusion": "",
+            "Fire Training": "6\/19\/2025",
+            "Excavation Comp Person": "",
+            "Resp. Fit Tested": "",
+            "Hazwoper": "",
+            "OSHA 10\/30": "10",
+            "Smith Driving": "",
+            "1st Aid\/CPR": "",
+            "ECP Backhoe Front Bucket Only": "",
+            "ECP Backhoe Full": "Qualified",
+            "ECP Mini Excavator": "Qualified",
+            "ECP Standard Excavator": "Qualified",
+            "ECP Trencher": "Qualified",
+            "ECP Skidsteer": "Qualified",
+            "ECP Dozer": "",
+            "ECP Sideboom": "Qualified",
+            "ECP Roller": "",
+            "ECP Driver Load\/Unload Only": "",
+            "ECP Drill": "",
+            "ECP Line Tamer": "Qualified",
+            "id": "michael-absher"
         }
     ]
 }
