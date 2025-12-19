@@ -42,7 +42,7 @@ A — Action
 
 R — Result
 
-> At this point in development, I have created a proof of concept for what will turn into a versatile application, and I am excited to continue developing this application.
+> At this point in development, I have created a proof of concept for what will turn into a versatile application, and I am excited to continue with its development.
 
 > It is currently stored on a Raspberry Pi and hosted using an Apache server, which is used to show that the QR codes work as expected.
 
