@@ -8,7 +8,7 @@ This project aims to solve that problem by creating editable employee cards, whi
 STAR:
 
 **S**ituation - I am currently developign QR Qualz as fun side project for a collegue of my fiance's father who works at Centuri.
-  He has a problem of keeping track of employee qualifications and making them easily accessible on the job site. The qualifications are
+  This individual has the problem of keeping track of employee qualifications and making them easily accessible on the job site. The qualifications are
   currently being stored on a spread sheet, which makes the tasks of looking up an employees's qualifcations on the fly feel cumbersome.
 
 **T**ask - This project aims to solve that problem by creating editable employee cards, which can easily be pulled up by simply scanning a QR code. 
